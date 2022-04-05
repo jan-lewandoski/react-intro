@@ -33,8 +33,8 @@ function App() {
     setName(event.target.value);
   };
 
-  const handleDelete = (name) => {
-    const updatedWorkshops = workshops.filter((n) => n !== name);
+  const handleDelete = (id) => {
+    const updatedWorkshops = workshops.filter((n, index) => index !== id);
     setWorkshops(updatedWorkshops);
   };
 
@@ -42,7 +42,10 @@ function App() {
     <div>
       <input value={name} onChange={handleChange} />
       <button onClick={handleClick}>Dodaj warsztaty</button>
-      <Workshop name={workshops[0]} onDelete={handleDelete} />
+      {workshops.map((name, index) => (
+        <Workshop key={index} id={index} name={name} onDelete={handleDelete} />
+      ))}
+      {workshops.length === 0 && <p>Brak warsztatów</p>}
     </div>
   );
 }

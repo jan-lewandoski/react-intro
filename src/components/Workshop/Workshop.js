@@ -1,8 +1,8 @@
-const Workshop = ({ name, onDelete }) => {
+const Workshop = ({ id, name, onDelete }) => {
   return (
     <div>
       {name}
-      <button onClick={() => onDelete(name)}>Usuń</button>
+      <button onClick={() => onDelete(id)}>Usuń</button>
     </div>
   );
 };
