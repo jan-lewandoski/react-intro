@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Workshop from "../../components/Workshop/Workshop";
 
 function App() {
   const [workshops, setWorkshops] = useState([]);
@@ -32,11 +33,16 @@ function App() {
     setName(event.target.value);
   };
 
+  const handleDelete = (name) => {
+    const updatedWorkshops = workshops.filter((n) => n !== name);
+    setWorkshops(updatedWorkshops);
+  };
+
   return (
     <div>
       <input value={name} onChange={handleChange} />
       <button onClick={handleClick}>Dodaj warsztaty</button>
-      <p>{workshops.join(",")}</p>
+      <Workshop name={workshops[0]} onDelete={handleDelete} />
     </div>
   );
 }
