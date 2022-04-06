@@ -1,4 +1,11 @@
 import { useState, useEffect } from "react";
+import {
+  Container,
+  InputGroup,
+  FormControl,
+  Button,
+  Row,
+} from "react-bootstrap";
 import Workshop from "../../components/Workshop/Workshop";
 
 function App() {
@@ -39,14 +46,31 @@ function App() {
   };
 
   return (
-    <div>
-      <input value={name} onChange={handleChange} />
-      <button onClick={handleClick}>Dodaj warsztaty</button>
-      {workshops.map((name, index) => (
-        <Workshop key={index} id={index} name={name} onDelete={handleDelete} />
-      ))}
+    <Container className="p-4">
+      <Row>
+        <InputGroup className="mb-3">
+          <FormControl
+            value={name}
+            onChange={handleChange}
+            placeholder="Nazwa warsztatów"
+          />
+          <Button onClick={handleClick} variant="outline-primary">
+            Dodaj
+          </Button>
+        </InputGroup>
+      </Row>
+      <Row>
+        {workshops.map((name, index) => (
+          <Workshop
+            key={index}
+            id={index}
+            name={name}
+            onDelete={handleDelete}
+          />
+        ))}
+      </Row>
       {workshops.length === 0 && <p>Brak warsztatów</p>}
-    </div>
+    </Container>
   );
 }
 
