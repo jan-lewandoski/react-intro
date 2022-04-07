@@ -1,9 +1,19 @@
+import { Card, Button } from "react-bootstrap";
+
 const WorkshopCard = ({ id, name, deleteHandler }) => {
   return (
-    <div>
-      <p>{name}</p>
-      <button onClick={() => deleteHandler(id)}>Usuń warsztat</button>
-    </div>
+    <Card style={{ width: "18rem" }} className="m-2">
+      <Card.Body>
+        <Card.Title>{name}</Card.Title>
+        <Button
+          variant="outline-danger"
+          size="sm"
+          onClick={() => deleteHandler(id)}
+        >
+          Usuń warsztat
+        </Button>
+      </Card.Body>
+    </Card>
   );
 };
 

@@ -3,6 +3,14 @@ import logo from "../../logo.svg";
 import "./App.css";
 import WorkshopCard from "../../components/WorkshopCard";
 
+import {
+  Container,
+  InputGroup,
+  FormControl,
+  Button,
+  Row,
+} from "react-bootstrap";
+
 function App() {
   const [name, setName] = useState("");
   const [workshops, setWorkshops] = useState([]);
@@ -39,20 +47,32 @@ function App() {
   };
 
   return (
-    <div>
-      <p>Nazwa warsztatów: {name}</p>
-      <input value={name} onChange={onChange}></input>
-      <button onClick={addWorkshop}>Dodaj warsztaty!</button>
-      {workshops.map((workshop, index) => (
-        <WorkshopCard
-          id={index}
-          key={index}
-          name={workshop}
-          deleteHandler={deleteHandler}
-        />
-      ))}
+    <Container className="p-4">
+      <Row>
+        <InputGroup className="mb-3">
+          <FormControl
+            placeholder="Nazwa warsztatów"
+            value={name}
+            onChange={onChange}
+          />
+          <Button variant="outline-primary" onClick={addWorkshop}>
+            Dodaj warsztaty!
+          </Button>
+        </InputGroup>
+      </Row>
+
+      <Row>
+        {workshops.map((workshop, index) => (
+          <WorkshopCard
+            id={index}
+            key={index}
+            name={workshop}
+            deleteHandler={deleteHandler}
+          />
+        ))}
+      </Row>
       {workshops.length === 0 && <p>Brak warsztatów</p>}
-    </div>
+    </Container>
   );
 }
 
