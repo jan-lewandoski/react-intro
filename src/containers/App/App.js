@@ -33,10 +33,8 @@ function App() {
     setName(event.target.value);
   };
 
-  const deleteHandler = (name) => {
-    const newWorkshops = workshops.filter(
-      (workshopName) => workshopName !== name
-    );
+  const deleteHandler = (id) => {
+    const newWorkshops = workshops.filter((workshopName, idx) => idx !== id);
     setWorkshops(newWorkshops);
   };
 
@@ -45,8 +43,15 @@ function App() {
       <p>Nazwa warsztatów: {name}</p>
       <input value={name} onChange={onChange}></input>
       <button onClick={addWorkshop}>Dodaj warsztaty!</button>
-      <div>{workshops.join(",")}</div>
-      <WorkshopCard name={workshops[0]} deleteHandler={deleteHandler} />
+      {workshops.map((workshop, index) => (
+        <WorkshopCard
+          id={index}
+          key={index}
+          name={workshop}
+          deleteHandler={deleteHandler}
+        />
+      ))}
+      {workshops.length === 0 && <p>Brak warsztatów</p>}
     </div>
   );
 }

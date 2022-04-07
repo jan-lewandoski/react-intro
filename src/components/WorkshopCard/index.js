@@ -1,8 +1,8 @@
-const WorkshopCard = ({ name, deleteHandler }) => {
+const WorkshopCard = ({ id, name, deleteHandler }) => {
   return (
     <div>
       <p>{name}</p>
-      <button onClick={() => deleteHandler(name)}>Usuń warsztat</button>
+      <button onClick={() => deleteHandler(id)}>Usuń warsztat</button>
     </div>
   );
 };
