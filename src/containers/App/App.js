@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import logo from "../../logo.svg";
 import "./App.css";
+import WorkshopCard from "../../components/WorkshopCard";
 
 function App() {
   const [name, setName] = useState("");
@@ -32,12 +33,20 @@ function App() {
     setName(event.target.value);
   };
 
+  const deleteHandler = (name) => {
+    const newWorkshops = workshops.filter(
+      (workshopName) => workshopName !== name
+    );
+    setWorkshops(newWorkshops);
+  };
+
   return (
     <div>
       <p>Nazwa warsztatów: {name}</p>
       <input value={name} onChange={onChange}></input>
       <button onClick={addWorkshop}>Dodaj warsztaty!</button>
       <div>{workshops.join(",")}</div>
+      <WorkshopCard name={workshops[0]} deleteHandler={deleteHandler} />
     </div>
   );
 }
